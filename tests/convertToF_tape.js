@@ -4,8 +4,7 @@ let convertToF = require("/home/erretres/Desktop/MISC_PROJECTS/FCC_algorithm/fun
 
 test('convertToF test', function (t) {
 
-// t.plan(1);
-
+ t.plan(6);
  t.equal(typeof convertToF(0),'number' ,'convertToF(0) should be a number' );
  t.equal(convertToF(0)   ,32,  "convertToF(0)   should return a value  of  32");
  t.equal(convertToF(30)  ,86,  "convertToF(30)  should return a value  of  86");

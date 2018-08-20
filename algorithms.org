@@ -30,7 +30,7 @@ echo ''
 : 
 : 
 
-
+** Timing test
 
 #+BEGIN_SRC js  :noweb yes :tangle ./tests/timing_tape.js
 var test = require("/home/erretres/mocha_chai/node_modules/tape");
@@ -48,6 +48,7 @@ test('timing test', function (t) {
 });
 #+END_SRC
 
+**** Results 
 
 #+BEGIN_SRC sh :results value verbatim  :exports results
 node ./tests/timing_tape.js;
@@ -228,8 +229,7 @@ let convertToF = require("/home/erretres/Desktop/MISC_PROJECTS/FCC_algorithm/fun
 
 test('convertToF test', function (t) {
 
-// t.plan(1);
-
+ t.plan(6);
  t.equal(typeof convertToF(0),'number' ,'convertToF(0) should be a number' );
  t.equal(convertToF(0)   ,32,  "convertToF(0)   should return a value  of  32");
  t.equal(convertToF(30)  ,86,  "convertToF(30)  should return a value  of  86");
@@ -255,7 +255,7 @@ echo ''
 #+begin_example
 
 
-  0 passing (2ms)
+  0 passing (3ms)
 
 TAP version 13
 # convertToF test
