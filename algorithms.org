@@ -1,6 +1,6 @@
-** canary test 
+** Canary Test 
    
-#+BEGIN_SRC js :noweb yes :tangle ./tests/canary_mocha.js
+#+BEGIN_SRC js :noweb yes :tangle ./tests/canary.js
 const expect = require("/home/erretres/mocha_chai/node_modules/chai/chai.js").expect;
 
 describe("canary", function() {
@@ -11,8 +11,11 @@ describe("canary", function() {
 
 #+END_SRC
 
-#+BEGIN_SRC sh :results value verbatim
-node /home/erretres/mocha_chai/node_modules/mocha/bin/mocha ./tests/canary_mocha.js
+
+*** Results
+
+#+BEGIN_SRC sh :results value verbatim :exports results
+node /home/erretres/mocha_chai/node_modules/mocha/bin/mocha ./tests/canary.js
 echo ''
 #+END_SRC
 
@@ -46,7 +49,7 @@ test('timing test', function (t) {
 #+END_SRC
 
 
-#+BEGIN_SRC sh :results value verbatim 
+#+BEGIN_SRC sh :results value verbatim  :exports results
 node ./tests/timing_tape.js;
 echo '' 
 #+END_SRC
@@ -91,6 +94,8 @@ not ok 2 should be equal
 *** [[https://learn.freecodecamp.org/javascript-algorithms-and-data-structures/basic-algorithm-scripting/convert-celsius-to-fahrenheit][Convert Celsius to Fahrenheit]]
 
 
+**** Description  
+
 #+BEGIN_QUOTE
 The algorithm to convert from Celsius to Fahrenheit is the temperature 
 in Celsius times 9/5, plus 32.
@@ -105,18 +110,27 @@ Don't worry too much about the function and return statements as they will be co
 #+END_QUOTE   
 
 
+**** Tests 
+
 #+BEGIN_QUOTE
 convertToF(0)   should return a number
+
 convertToF(0)   should return a value  of  32
+
 convertToF(30)  should return a value  of  86
+
 convertToF(-30) should return a value  of -22
+
 convertToF(-10) should return a value  of  14
+
 convertToF(20)  should return a value  of  68
 #+END_QUOTE
 
 
 
-#+BEGIN_SRC js :noweb yes :tangle ./functions/convertToF.js
+**** Function
+
+#+BEGIN_SRC js :noweb yes :tangle ./functions/convertToF.js 
 /**
  * 
  * @param   {number}  celsius 
@@ -132,12 +146,8 @@ module.exports = convertToF;
 
 #+END_SRC
 
-#+RESULTS:
-: 86
 
-
-
-
+**** Mocha/Chai
 
 #+BEGIN_SRC js :noweb yes :tangle ./tests/convertToF.js
 const expect = require("/home/erretres/mocha_chai/node_modules/chai/chai.js").expect;
@@ -185,7 +195,7 @@ describe("converToF.js", function() {
 
 #+RESULTS:
     
-#+BEGIN_SRC sh :results value verbatim
+#+BEGIN_SRC sh :results value verbatim :exports results
 node /home/erretres/mocha_chai/node_modules/mocha/bin/mocha ./tests/convertToF.js
 echo ''
 #+END_SRC
@@ -208,6 +218,9 @@ echo ''
 
 #+end_example
 
+
+
+**** Tape 
 
 #+BEGIN_SRC js :mkdirp yes :noweb yes :tangle ./tests/convertToF_tape.js
 var test = require("/home/erretres/mocha_chai/node_modules/tape");
@@ -233,7 +246,7 @@ test('convertToF test', function (t) {
 
    
 
-#+BEGIN_SRC sh :results value verbatim 
+#+BEGIN_SRC sh :results value verbatim  :exports results
 node /home/erretres/mocha_chai/node_modules/mocha/bin/mocha ./tests/convertToF_tape.js
 echo ''
 #+END_SRC 
@@ -254,4 +267,3 @@ ok 5 convertToF(-10) should return a value of 14
 ok 6 convertToF(20) should return a value of 68
 
 #+end_example
-
