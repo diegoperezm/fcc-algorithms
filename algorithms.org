@@ -1,6 +1,118 @@
 #+PROPERTY: header-args :results verbatim :dir ./
 
+* How To Design Programs, Second Edition 
+
+
+https://en.wikipedia.org/wiki/How_to_Design_Programs
+
+
+#+BEGIN_QUOTE
+How to Design Programs (HtDP) is a textbook by Matthias Felleisen, Robert Bruce Findler, Matthew Flatt and Shriram Krishnamurthi on the systematic design of computer programs first published in 2001 by MIT Press. The second edition of the text, published in 2018, is also freely available online and in print. The book introduces the concept of a design recipe, a six-step process for creating programs from the problem statement. 
+#+END_QUOTE
+
+
+
+https://htdp.org/
+
+
+
+** JavaScript recipe
+
+#+BEGIN_SRC js 
+/**
+ *  0. Data definition
+ *  1. Signature, purpose and stub
+ *  2. Define examples, wrap each in check-expect
+ *  3. Template and inventory	
+ *  4. Code the function body	
+ *  5. Test and debug until correct
+ *   
+ * @description    Function description What the function computes.
+ * @param  {Type} name   - Parameter description
+ * @returns {Type}    - Return    description 
+ *
+ * @example   
+ *
+ * countDown(3);
+ * // => [3,2,1] 
+ *
+ * @example   
+ *
+ * countDown(5); 
+ * // => [5,4,3,2,1] 
+ *
+ */
+
+
+/** 
+ * problems with combinator, create a table:
+ * for every expression in the function, create a row with: 
+ *
+ *  - arguments 
+ *  - intermediate values
+ *  - results
+ * 
+ * Example: 
+ *
+ * | n    | if      |  else countDown | desired outup |
+ * | 3    | false   |  [3]            |   [3]         |
+ * | 2    | false   |  [3,2]          |   [3,2]       |
+ * | 1    | [3,2,1] |                 |   [3,2,1]     |
+ *
+ * 
+ * function countDown(number,arr) {
+ *  let result = arr || [];
+ *
+ *  if(number === 1) {
+ *    result.push(number);
+ * 
+ *  } else {
+ *    result.push(number);
+ *    countDown(number-1,result)
+ *  }      
+ *   return result;
+ * }
+ *
+*/ 
+
+function name() {
+ 
+  if(baseCase) {
+   use example
+   }else{ 
+
+   recursiveCase
+   combinator||recursiveCAll(args); 
+   }
+ 
+}
+#+END_SRC
+
+
+**  JSDoc
+
+
+- http://usejsdoc.org/tags-description.html
+
+#+BEGIN_QUOTE
+The @description tag allows you to provide a general description of the symbol you are documenting. The description may include HTML markup. It may also include Markdown formatting if the Markdown plugin is enabled.
+#+END_QUOTE
+
+- http://usejsdoc.org/tags-param.html
+
+#+BEGIN_QUOTE
+The @param tag provides the name, type, and description of a function parameter.
+#+END_QUOTE
+
+- http://usejsdoc.org/tags-returns.html
+
+#+BEGIN_QUOTE
+The @returns tag documents the value that a function returns.
+#+END_QUOTE
+
+
 * freeCodeCamp  
+
 
 **  [[https://learn.freecodecamp.org/javascript-algorithms-and-data-structures/basic-algorithm-scripting][Basic algorithm scripting]]
 
@@ -40,15 +152,31 @@ convertToF(-10) should return a value  of  14
 convertToF(20)  should return a value  of  68
 #+END_QUOTE
 
-
-
 **** Function
 
 #+BEGIN_SRC js :noweb yes :tangle ./functions/convertToF.js 
 /**
  * 
+ * @description       Convert from Celsius to Fahrenheit
  * @param   {number}  celsius 
  * @returns {number}  number 
+ * @example
+ *
+ * convertToF(0);   
+ * // =>  32
+ *
+ * convertToF(30);
+ * // =>  86
+ *
+ * convertToF(-30); 
+ * // => -22
+ *
+ * convertToF(-10); 
+ * // => 14
+ *
+ * convertToF(20);    
+ * // => 68
+ *
  */
 
 function convertToF(celsius) {
@@ -68,7 +196,6 @@ const test = require("tape");
 let convertToF = require("../functions/convertToF.js");
 
 test('convertToF test', function (t) {
-
  t.plan(6);
  t.equal(typeof convertToF(0),'number' ,'convertToF(0) should be a number' );
  t.equal(convertToF(0)   ,32,  "convertToF(0)   should return a value  of  32");
@@ -81,7 +208,6 @@ test('convertToF test', function (t) {
 #+END_SRC
 
   
-
 #+BEGIN_SRC sh :results value verbatim  :exports results
 node ./tests/convertToF.spec.js;
 #+END_SRC 
