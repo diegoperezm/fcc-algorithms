@@ -1,6 +1,5 @@
-
-var test = require("/home/erretres/mocha_chai/node_modules/tape");
-let convertToF = require("/home/erretres/Desktop/MISC_PROJECTS/FCC_algorithm/functions/convertToF.js");
+const test = require("tape");
+let convertToF = require("../functions/convertToF.js");
 
 test('convertToF test', function (t) {
 
@@ -11,6 +10,5 @@ test('convertToF test', function (t) {
  t.equal(convertToF(-30) ,-22, "convertToF(-30) should return a value  of -22");
  t.equal(convertToF(-10) ,14,  "convertToF(-10) should return a value  of  14");
  t.equal(convertToF(20)  ,68,  "convertToF(20)  should return a value  of  68");
- t.end(err); 
-
+ t.end();
 });

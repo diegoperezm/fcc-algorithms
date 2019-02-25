@@ -1,8 +1,7 @@
-
 /**
  * 
  * @param   {number}  celsius 
- * @returns {number} 
+ * @returns {number}  number 
  */
 
 function convertToF(celsius) {

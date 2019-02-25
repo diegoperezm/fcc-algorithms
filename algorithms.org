@@ -1,93 +1,6 @@
-** Canary Test 
-   
-#+BEGIN_SRC js :noweb yes :tangle ./tests/canary.js
-const expect = require("/home/erretres/mocha_chai/node_modules/chai/chai.js").expect;
+#+PROPERTY: header-args :results verbatim :dir ./
 
-describe("canary", function() {
-  it("should pass this canary test", function() {
-    expect(true).to.be.true;
-  });
-});
-
-#+END_SRC
-
-
-*** Results
-
-#+BEGIN_SRC sh :results value verbatim :exports results
-node /home/erretres/mocha_chai/node_modules/mocha/bin/mocha ./tests/canary.js
-echo ''
-#+END_SRC
-
-#+RESULTS:
-: 
-: 
-:   canary
-:     ✓ should pass this canary test
-: 
-: 
-:   1 passing (10ms)
-: 
-: 
-
-** Timing test
-
-#+BEGIN_SRC js  :noweb yes :tangle ./tests/timing_tape.js
-var test = require("/home/erretres/mocha_chai/node_modules/tape");
-
-test('timing test', function (t) {
-    
-    t.plan(2);
-    t.equal(typeof Date.now, 'function');
-
-    var start = Date.now();
-
-    setTimeout(function () {
-        t.equal(Date.now() - start, 100);
-    }, 100);
-});
-#+END_SRC
-
-**** Results 
-
-#+BEGIN_SRC sh :results value verbatim  :exports results
-node ./tests/timing_tape.js;
-echo '' 
-#+END_SRC
-
-
-#+RESULTS:
-#+begin_example
-TAP version 13
-# timing test
-ok 1 should be equal
-not ok 2 should be equal
-  ---
-    operator: equal
-    expected: 100
-    actual:   102
-    at: Timeout._onTimeout (/home/erretres/Desktop/MISC_PROJECTS/FCC_algorithm/tests/timing_tape.js:12:11)
-    stack: |-
-      Error: should be equal
-          at Test.assert [as _assert] (/home/erretres/mocha_chai/node_modules/tape/lib/test.js:224:54)
-          at Test.bound [as _assert] (/home/erretres/mocha_chai/node_modules/tape/lib/test.js:76:32)
-          at Test.equal (/home/erretres/mocha_chai/node_modules/tape/lib/test.js:384:10)
-          at Test.bound [as equal] (/home/erretres/mocha_chai/node_modules/tape/lib/test.js:76:32)
-          at Timeout._onTimeout (/home/erretres/Desktop/MISC_PROJECTS/FCC_algorithm/tests/timing_tape.js:12:11)
-          at ontimeout (timers.js:466:11)
-          at tryOnTimeout (timers.js:304:5)
-          at Timer.listOnTimeout (timers.js:267:5)
-  ...
-
-1..2
-# tests 2
-# pass  1
-# fail  1
-
-
-#+end_example
-
-
+* freeCodeCamp  
 
 **  [[https://learn.freecodecamp.org/javascript-algorithms-and-data-structures/basic-algorithm-scripting][Basic algorithm scripting]]
 
@@ -144,88 +57,15 @@ function convertToF(celsius) {
 }
 
 module.exports = convertToF;
-
 #+END_SRC
-
-
-**** Mocha/Chai
-
-#+BEGIN_SRC js :noweb yes :tangle ./tests/convertToF.js
-const expect = require("/home/erretres/mocha_chai/node_modules/chai/chai.js").expect;
-
-let convertToF = require("/home/erretres/Desktop/MISC_PROJECTS/FCC_algorithm/functions/convertToF.js");
-
-describe("converToF.js", function() {
-
-  it("should return a number when parameter is 0", function() {
-
-  let value = convertToF(0);  
-
-  expect(value).to.be.an('number')
-  });
-
-  it("should return a value of 32 when parameter is 0", function() {
-  let value = convertToF(0);  
-  expect(value).to.equal(32);
-  });
-
-
-  it("should return a value of 86 when parameter is 30 ", function() {
-   let value = convertToF(30);  
-   expect(value).to.equal(86);
-  });
- 
-  it("should return a value of -22 when parameter is -30", function() {
-   let value = convertToF(-30);  
-   expect(value).to.equal(-22);
-  });
-
-   it("should return a value of 14  when parameter is -10", function() {
-   let value = convertToF(-10);  
-   expect(value).to.equal(14);
-  });
-  
-   it("should return a value of 68  when parameter is 20", function() {
-   let value = convertToF(20);  
-   expect(value).to.equal(68);
-  });
- 
-});
-
-#+END_SRC
-
-#+RESULTS:
-    
-#+BEGIN_SRC sh :results value verbatim :exports results
-node /home/erretres/mocha_chai/node_modules/mocha/bin/mocha ./tests/convertToF.js
-echo ''
-#+END_SRC
-
-#+RESULTS:
-#+begin_example
-
-
-  converToF.js
-    ✓ should return a number when parameter is 0
-    ✓ should return a value of 32 when parameter is 0
-    ✓ should return a value of 86 when parameter is 30 
-    ✓ should return a value of -22 when parameter is -30
-    ✓ should return a value of 14  when parameter is -10
-    ✓ should return a value of 68  when parameter is 20
-
-
-  6 passing (12ms)
-
-
-#+end_example
-
 
 
 **** Tape 
 
-#+BEGIN_SRC js :mkdirp yes :noweb yes :tangle ./tests/convertToF_tape.js
-var test = require("/home/erretres/mocha_chai/node_modules/tape");
-let convertToF = require("/home/erretres/Desktop/MISC_PROJECTS/FCC_algorithm/functions/convertToF.js");
+
+#+BEGIN_SRC js :mkdirp yes :noweb yes :tangle ./tests/convertToF.spec.js 
+const test = require("tape");
+let convertToF = require("../functions/convertToF.js");
 
 test('convertToF test', function (t) {
 
@@ -236,27 +76,18 @@ test('convertToF test', function (t) {
  t.equal(convertToF(-30) ,-22, "convertToF(-30) should return a value  of -22");
  t.equal(convertToF(-10) ,14,  "convertToF(-10) should return a value  of  14");
  t.equal(convertToF(20)  ,68,  "convertToF(20)  should return a value  of  68");
- t.end(err); 
-
+ t.end();
 });
-
-
-
 #+END_SRC
 
-   
+  
 
 #+BEGIN_SRC sh :results value verbatim  :exports results
-node /home/erretres/mocha_chai/node_modules/mocha/bin/mocha ./tests/convertToF_tape.js
-echo ''
+node ./tests/convertToF.spec.js;
 #+END_SRC 
 
 #+RESULTS:
 #+begin_example
-
-
-  0 passing (3ms)
-
 TAP version 13
 # convertToF test
 ok 1 convertToF(0) should be a number
@@ -266,4 +97,11 @@ ok 4 convertToF(-30) should return a value of -22
 ok 5 convertToF(-10) should return a value of 14
 ok 6 convertToF(20) should return a value of 68
 
+1..6
+# tests 6
+# pass  6
+
+# ok
+
 #+end_example
+
